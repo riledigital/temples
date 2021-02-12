@@ -29,7 +29,7 @@ const registerHelpers = () => {
 export const parse = (source, mapping = {}, defaultMapping = {}) => {
   registerHelpers();
 
-  const template = Handlebars.compile(source);
+  const template = Handlebars.compile(source, {noEscape: true});
   return template({ ...defaultMapping, ...mapping });
 };
 

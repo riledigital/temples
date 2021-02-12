@@ -63,4 +63,13 @@ describe('parser', () => {
       expect(parse(source, mapping)).toBe(`Hello, big-button`);
     });
   });
+
+  it(`don't escape characters to HTML entities`, () => {
+    const sources = ["There is no escape! {{ this.name }}"];
+    const mapping = { name: "passed '\" ’“”“"};
+
+    sources.forEach((source) => {
+      expect(parse(source, mapping)).toBe(`There is no escape! passed '\" ’“”“`);
+    });
+  });
 });
